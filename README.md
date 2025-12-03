@@ -6,6 +6,12 @@ Learning agentic AI by building small projects with FastAPI. I’ve also worked 
 [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/walidozich) [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/mohamed-walid-cherchali-204771217) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:cherchalimohamedwalid@gmail.com) 
 
 ## 🔧 Technologies & Tools
+<div style="
+  background: #2D333B;
+  padding: 20px 10px;
+  border-radius: 12px;
+  display: inline-block;
+">
 <p align="left">
   <!-- Languages -->
   <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer">
@@ -109,6 +115,11 @@ Learning agentic AI by building small projects with FastAPI. I’ve also worked 
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swagger/swagger-original.svg" alt="Swagger" width="40" height="40"/>
   </a>
 </p>
+
+
+</div>
+
+
 
 # 📊 GitHub Stats:
 ![](https://github-readme-stats.vercel.app/api?username=walidozich&theme=dark&hide_border=false&include_all_commits=false&count_private=false)<br/>
