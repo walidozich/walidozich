@@ -86,9 +86,6 @@ Learning agentic AI by building small projects with FastAPI. I’ve also worked 
   <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer">
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" width="40" height="40"/>
   </a>
-  <a href="https://www.prisma.io/" target="_blank" rel="noreferrer">
-    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg" alt="Prisma" width="40" height="40"/>
-  </a>
 
   <!-- Design / Collaboration -->
   <a href="https://www.canva.com/" target="_blank" rel="noreferrer">
