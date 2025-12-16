@@ -132,4 +132,7 @@ Learning agentic AI by building small projects with FastAPI. I’ve also worked 
 ---
 [![](https://visitcount.itsvg.in/api?id=walidozich&icon=0&color=0)](https://visitcount.itsvg.in)
 
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+
+<!-- Contribution Graph -->
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=walidozich&custom_title=Contribution%20Graph&bg_color=0D1117&color=00D9FF&line=00D9FF&point=FFFFFF&area=true&hide_border=true" alt="Contribution Graph" />
+
