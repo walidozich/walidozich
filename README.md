@@ -138,3 +138,11 @@ Learning agentic AI by building small projects with FastAPI. I’ve also worked 
 <!-- Contribution Graph -->
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=walidozich&custom_title=Contribution%20Graph&bg_color=0D1117&color=00D9FF&line=00D9FF&point=FFFFFF&area=true&hide_border=true" alt="Contribution Graph" />
 
+
+
+------------------------------------------
+
+
+[![GitHub Streak](streak-stats.demolab.com)](https://git.io/streak-stats)
+
+
