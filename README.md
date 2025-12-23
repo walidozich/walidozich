@@ -140,9 +140,3 @@ Learning agentic AI by building small projects with FastAPI. I’ve also worked 
 
 
 
-------------------------------------------
-
-
-[![GitHub Streak](streak-stats.demolab.com)](https://git.io/streak-stats)
-
-
