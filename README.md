@@ -121,8 +121,7 @@ Learning agentic AI by building small projects with FastAPI. I’ve also worked 
 
 
 # 📊 GitHub Stats:
-![](https://github-readme-stats.vercel.app/api?username=walidozich&theme=dark&hide_border=false&include_all_commits=false&count_private=false)<br/>
-![](https://nirzak-streak-stats.vercel.app/?user=walidozich&theme=dark&hide_border=false)<br/>
+[![GitHub Streak](https://github-readme-streak-stats-tau-gules.vercel.app?user=walidozich&theme=dark)](https://git.io/streak-stats)<br/>
 ![](https://github-readme-stats.vercel.app/api/top-langs/?username=walidozich&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
 
 
