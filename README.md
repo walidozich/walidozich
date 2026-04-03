@@ -1,5 +1,12 @@
 # 💫 About Me:
-Learning agentic AI by building small projects with FastAPI. I’ve also worked on backend projects using Express.js and completed my final-year project in .NET.
+Fullstack Developer with strong foundations in software engineering, API design, and
+database driven applications. Experienced with .NET Core, FastAPI, Express.js,
+PostgreSQL, Docker, Kafka, and modern development workflows. Skilled in building
+secure, scalable backend services and working across full development lifecycles.
+Combines technical expertise with strong community leadership through active
+involvement in USTHB’s Micro Club for three years. Passionate about backend
+architecture, distributed systems, and building reliable developer first solutions.
+
 
 ---------------------
 
