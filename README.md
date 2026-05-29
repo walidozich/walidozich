@@ -8,6 +8,8 @@ distributed workflows, and database-driven applications. My work spans .NET Core
 NestJS, FastAPI, Kafka/NATS messaging, Redis caching, Dockerized environments, and
 modern frontend stacks when the product needs a complete end-to-end build.
 
+[![committers.top badge](https://user-badge.committers.top/algeria_private/walidozich.svg)](https://user-badge.committers.top/algeria_private/walidozich)
+
 ## Connect
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-111827?style=for-the-badge&logo=netlify&logoColor=00C7B7)](https://portfolio-walidozich.netlify.app)
