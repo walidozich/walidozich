@@ -1,0 +1,50 @@
+name: terminal
+
+on:
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - assets/gen_terminal.py
+      - .github/workflows/terminal.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: terminal
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check out the output branch
+        run: |
+          if git ls-remote --exit-code --heads origin output; then
+            git fetch --depth=1 origin output:refs/remotes/origin/output
+            git worktree add -B output out origin/output
+          else
+            git worktree add --orphan -b output out
+          fi
+
+      - name: Render the terminal
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 assets/gen_terminal.py out
+
+      - name: Publish
+        working-directory: out
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "nothing changed"
+          else
+            git commit -m "chore: render terminal"
+            git push origin output
+          fi
