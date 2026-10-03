@@ -161,6 +161,7 @@ def fetch_stats(now):
     return dict(
         year_total=cal["totalContributions"], weeks=cal["weeks"], lifetime=sum(days.values()),
         since=created.strftime("%b %Y"), current=cur, longest=best,
+        current_span=(day + timedelta(days=1), day + timedelta(days=cur)) if cur else None,
         longest_span=(best_end - timedelta(days=best - 1), best_end) if best else None,
         repos=u["repositories"]["totalCount"], stars=sum(r["stargazerCount"] for r in u["repositories"]["nodes"]),
         langs=top, rank=int(rank.group(1)),
@@ -288,8 +289,8 @@ def cowsay(T, quote, who):
     wd = max(len(s) for s in body)
     bubble = [" " + "_" * (wd + 2)]
     for i, s in enumerate(body):
-        l, r = ("<", ">") if len(body) == 1 else ("/", "\\") if i == 0 else ("\\", "/") if i == len(body) - 1 else ("|", "|")
-        bubble.append(f"{l} {s.ljust(wd)} {r}")
+        left, right = ("<", ">") if len(body) == 1 else ("/", "\\") if i == 0 else ("\\", "/") if i == len(body) - 1 else ("|", "|")
+        bubble.append(f"{left} {s.ljust(wd)} {right}")
     bubble.append(" " + "-" * (wd + 2))
     cow = ["        \\   ^__^", "         \\  (oo)\\_______", "            (__)\\       )\\/\\",
            "                ||----w |", "                ||     ||"]
@@ -297,6 +298,66 @@ def cowsay(T, quote, who):
         T.line([(s, C["fg"])], 0.05, indent=2)
     for s in cow:
         T.line([(s, C["green"])], 0.05, indent=2)
+
+
+DIGITS = {  # 5x7 pixel font for the dashboard numbers
+    "0": [".###.", "#...#", "#..##", "#.#.#", "##..#", "#...#", ".###."],
+    "1": ["..#..", ".##..", "..#..", "..#..", "..#..", "..#..", ".###."],
+    "2": [".###.", "#...#", "....#", "...#.", "..#..", ".#...", "#####"],
+    "3": ["####.", "....#", "....#", ".###.", "....#", "....#", "####."],
+    "4": ["...#.", "..##.", ".#.#.", "#..#.", "#####", "...#.", "...#."],
+    "5": ["#####", "#....", "####.", "....#", "....#", "#...#", ".###."],
+    "6": ["..##.", ".#...", "#....", "####.", "#...#", "#...#", ".###."],
+    "7": ["#####", "....#", "...#.", "..#..", ".#...", ".#...", ".#..."],
+    "8": [".###.", "#...#", "#...#", ".###.", "#...#", "#...#", ".###."],
+    "9": [".###.", "#...#", "#...#", ".####", "....#", "...#.", ".##.."],
+    ",": ["..", "..", "..", "..", "..", ".#", "#."],
+}
+
+
+def dashboard(T, stats):
+    """A framed three-column streak card: big pixel numbers, labels, date ranges."""
+    px, h = 5, 132
+    x0, w = PAD, W - 2 * PAD
+    top = T.y - FS + 4
+    colw = w / 3
+    per = 2 * (w + h)
+    T.out.append(f'<rect x="{x0}" y="{top}" width="{w}" height="{h}" rx="8" fill="{C["bar"]}" fill-opacity=".55" '
+                 f'stroke="{C["border"]}" stroke-dasharray="{per}" class="r f" style="animation-delay:{T.t:.2f}s"/>')
+    title = " streak --summary "
+    T.out.append(f'<rect x="{x0 + 16}" y="{top - 9}" width="{len(title) * CW:.1f}" height="18" fill="{C["bg"]}" '
+                 f'class="r" style="animation-delay:{T.t:.2f}s"/>')
+    T.text(x0 + 16, title, C["dim"], T.t, y=top + 5)
+    for i in (1, 2):
+        T.out.append(f'<path d="M{x0 + i * colw:.1f} {top + 18}V{top + h - 18}" stroke="{C["border"]}" '
+                     f'stroke-dasharray="3 4" class="r" style="animation-delay:{T.t + 0.5:.2f}s"/>')
+
+    def span(s, fmt):
+        return f"{s[0]:%b %d} - {s[1]:{fmt}}" if s else "no active streak"
+
+    cols = [
+        (f"{stats['lifetime']:,}", "total contributions", f"{stats['since']} - present"),
+        (f"{stats['current']}", "current streak", span(stats["current_span"], "%b %d")),
+        (f"{stats['longest']}", "best streak", span(stats["longest_span"], "%b %d, %Y")),
+    ]
+    for i, (num, label, sub) in enumerate(cols):
+        cx = x0 + colw * (i + 0.5)
+        widths = [len(DIGITS[ch][0]) * px + px for ch in num]
+        gx = cx - (sum(widths) - px) / 2
+        rows = [[] for _ in range(7)]
+        for ch, cw in zip(num, widths):
+            for r, row in enumerate(DIGITS[ch]):
+                rows[r] += [f"M{gx + c * px:.1f} {top + 26 + r * px}h{px - 1}v{px - 1}h-{px - 1}z"
+                            for c, bit in enumerate(row) if bit == "#"]
+            gx += cw
+        d = T.t + 0.6 + i * 0.25
+        T.out.append('<g filter="url(#glow)">' + "".join(
+            f'<path d="{"".join(row)}" fill="url(#grad)" class="r" style="animation-delay:{d + r * 0.05:.2f}s"/>'
+            for r, row in enumerate(rows)) + "</g>")
+        T.text(cx - len(label) * CW / 2, label, C["magenta"], d + 0.35, "700", y=top + 26 + 7 * px + 30)
+        T.text(cx - len(sub) * CW / 2, sub, C["dim"], d + 0.45, y=top + 26 + 7 * px + 52)
+    T.y = top + h + LH + 4
+    T.t += 0.6 + 3 * 0.25 + 0.6
 
 
 def render(stats, icons, now):
@@ -327,6 +388,10 @@ def render(stats, icons, now):
         T.out.append(f'<rect x="{PAD + 2 * CW + i * 30}" y="{T.y - FS + 4}" width="26" height="12" rx="2" '
                      f'fill="{col}" class="r" style="animation-delay:{T.t:.2f}s"/>')
     T.gap(LH + 4)
+
+    T.prompt(f"streak --summary --user {USER}")
+    T.gap(10, 0)
+    dashboard(T, stats)
 
     T.prompt("cat about.txt")
     for s in ABOUT:
@@ -371,12 +436,8 @@ def render(stats, icons, now):
     T.text(PAD + 47 * CW, "done", C["green"], d + 0.8, "700")
     T.y += LH
     T.t = d + 1.0
-    span = stats["longest_span"]
     rows = [
         ("contributions", f"{stats['year_total']:,} in the last year", f"  ({stats['lifetime']:,} since {stats['since']})"),
-        ("current streak", f"{stats['current']} day{'s' if stats['current'] != 1 else ''}", ""),
-        ("longest streak", f"{stats['longest']} days",
-         f"  ({span[0]:%b %d} - {span[1]:%b %d, %Y})" if span else ""),
         ("public repos", f"{stats['repos']}", f"  ({stats['stars']} stars)"),
     ]
     for k, v, extra in rows:
@@ -423,6 +484,8 @@ text{{font-family:{FONT};font-size:{FS}px;white-space:pre}}
 .g{{transform-box:fill-box;transform-origin:left;animation:show 0s forwards,grow .6s ease-out forwards}}
 @keyframes show{{to{{opacity:1}}}}
 @keyframes hide{{to{{opacity:0}}}}
+.f{{animation:show 0s forwards,draw 1s ease-out forwards}}
+@keyframes draw{{from{{stroke-dashoffset:{2 * (W - 2 * PAD + 132)}}}to{{stroke-dashoffset:0}}}}
 @keyframes grow{{from{{transform:scaleX(0)}}to{{transform:scaleX(1)}}}}
 {chr(10).join(T.keyframes)}
 </style>
