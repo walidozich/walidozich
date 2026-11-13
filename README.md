@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/walidozich/walidozich/output/terminal.svg" width="100%" alt="An animated terminal session: walid@usthb boots, prints WALIDOZICH in ASCII art, runs whoami (Cherchali Mohamed Walid, Fullstack Developer, Distributed Systems and API Design, Bioinformatics at USTHB Algiers), cat about.txt, the committers.top rank, the contact list, the tech stack tree and icons, live GitHub stats with a contribution heatmap and top languages, a fortune from cowsay, then exits." />
+  <img src="https://raw.githubusercontent.com/walidozich/walidozich/output/terminal.svg" width="100%" alt="An animated terminal session: walid@usthb boots, prints WALIDOZICH in ASCII art, runs whoami (Cherchali Mohamed Walid, Fullstack Developer, Distributed Systems and API Design, Bioinformatics at USTHB Algiers), shows a streak summary box (current streak, best streak, date ranges), cat about.txt, the committers.top rank, the contact list, the tech stack tree and icons, live GitHub stats with a contribution heatmap and top languages, a fortune from cowsay, then exits." />
 </p>
 
 <p align="center">
