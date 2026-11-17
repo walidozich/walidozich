@@ -1,0 +1,8 @@
+[Unit]
+Description=Render and publish the walidozich terminal SVG
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/mnt/Data/DEV/walidozich/walidozich/assets/publish.sh
