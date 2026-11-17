@@ -314,7 +314,7 @@ text{font-family:'JetBrains Mono','Fira Code','Cascadia Code',ui-monospace,SFMon
 <rect x="158.4" y="1558" width="377.1" height="12" rx="2" fill="#3178c6" class="r g" style="animation-delay:13.940s"/>
 <text x="590.4" y="1569" fill="#6e7681" textLength="50.4" lengthAdjust="spacingAndGlyphs" class="r" style="animation-delay:13.940s"> 37.3%</text>
 <text x="40.8" y="1590" fill="#c9d1d9" textLength="109.2" lengthAdjust="spacingAndGlyphs" class="r" style="animation-delay:14.000s">Python       </text>
-<rect x="158.4" y="1579" width="137.0" height="12" rx="2" fill="#3572A5" class="r g" style="animation-delay:14.000s"/>
+<rect x="158.4" y="1579" width="137.1" height="12" rx="2" fill="#3572A5" class="r g" style="animation-delay:14.000s"/>
 <text x="590.4" y="1590" fill="#6e7681" textLength="50.4" lengthAdjust="spacingAndGlyphs" class="r" style="animation-delay:14.000s"> 13.6%</text>
 <text x="40.8" y="1611" fill="#c9d1d9" textLength="109.2" lengthAdjust="spacingAndGlyphs" class="r" style="animation-delay:14.060s">JavaScript   </text>
 <rect x="158.4" y="1600" width="42.0" height="12" rx="2" fill="#f1e05a" class="r g" style="animation-delay:14.060s"/>
@@ -325,7 +325,7 @@ text{font-family:'JetBrains Mono','Fira Code','Cascadia Code',ui-monospace,SFMon
 <text x="40.8" y="1653" fill="#c9d1d9" textLength="109.2" lengthAdjust="spacingAndGlyphs" class="r" style="animation-delay:14.180s">HTML         </text>
 <rect x="158.4" y="1642" width="5.1" height="12" rx="2" fill="#e34c26" class="r g" style="animation-delay:14.180s"/>
 <text x="590.4" y="1653" fill="#6e7681" textLength="50.4" lengthAdjust="spacingAndGlyphs" class="r" style="animation-delay:14.180s">  0.5%</text>
-<text x="24.0" y="1674" fill="#6e7681" textLength="420.0" lengthAdjust="spacingAndGlyphs" class="r" style="animation-delay:14.240s"># synced 2026-11-17 13:30 UTC by assets/publish.sh</text>
+<text x="24.0" y="1674" fill="#6e7681" textLength="420.0" lengthAdjust="spacingAndGlyphs" class="r" style="animation-delay:14.240s"># synced 2026-11-17 14:00 UTC by assets/publish.sh</text>
 <text x="24.0" y="1703" fill="#39d353" textLength="92.4" lengthAdjust="spacingAndGlyphs" font-weight="700" class="r" style="animation-delay:14.415s">walid@usthb</text>
 <text x="116.4" y="1703" fill="#58a6ff" textLength="33.6" lengthAdjust="spacingAndGlyphs" font-weight="700" class="r" style="animation-delay:14.415s">:~$ </text>
 <text x="150.0" y="1703" fill="#c9d1d9" textLength="193.2" lengthAdjust="spacingAndGlyphs" class="r" style="animation-delay:14.415s">fortune -s dev | cowsay</text>
