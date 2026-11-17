@@ -3,7 +3,7 @@
 
 usage: GITHUB_TOKEN=... python3 assets/gen_terminal.py [OUT_DIR]   (default OUT_DIR: ./out)
 Writes OUT_DIR/terminal.svg plus one OUT_DIR/link-<name>.svg button per contact link.
-Run daily by .github/workflows/terminal.yml, which publishes OUT_DIR to the `output` branch.
+Run every 30 minutes by the systemd user timer in assets/systemd/ via assets/publish.sh, which publishes OUT_DIR to the `output` branch.
 """
 import json
 import os
@@ -21,6 +21,7 @@ PAD = 24
 TOP = 58          # first text baseline
 LH = 21           # line height
 FS = 14           # font size
+SPEED = 2         # playback speed multiplier, applied to every delay and duration in the finished SVG
 CW = 8.4          # char advance (forced via textLength, so it is exact)
 FONT = "'JetBrains Mono','Fira Code','Cascadia Code',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace"
 
@@ -454,7 +455,7 @@ def render(stats, icons, now):
         T.text(bx + 432, f"{pct:5.1f}%", C["dim"], T.t)
         T.y += LH
         T.t += 0.12
-    T.line([(f"# synced {now:%Y-%m-%d %H:%M} UTC by .github/workflows/terminal.yml", C["dim"])], 0.1)
+    T.line([(f"# synced {now:%Y-%m-%d %H:%M} UTC by assets/publish.sh", C["dim"])], 0.1)
     T.gap()
 
     T.prompt("fortune -s dev | cowsay")
@@ -500,6 +501,13 @@ text{{font-family:{FONT};font-size:{FS}px;white-space:pre}}
 '''
 
 
+def speed_up(svg, factor=SPEED):
+    """Divide every animation delay and duration by `factor`, so the whole session plays that much faster."""
+    def scale(m):
+        return f"{m.group(1)}{float(m.group(2)) / factor:.3f}s"
+    return re.sub(r"(animation-delay:|animation:k\d+ |steps\(\d+\) |grow |draw )(\d*\.?\d+)s", scale, svg)
+
+
 def button(i, key):
     label = f"[{i}] {key}"
     w = int(len(label) * CW + 28)
@@ -520,7 +528,7 @@ if __name__ == "__main__":
     now = datetime.now(timezone.utc)
     stats = fetch_stats(now)
     icons = [fetch_icon(n) for n in ICONS]
-    (out / "terminal.svg").write_text(render(stats, icons, now))
+    (out / "terminal.svg").write_text(speed_up(render(stats, icons, now)))
     for i, (key, _, _) in enumerate(LINKS, 1):
         (out / f"link-{key}.svg").write_text(button(i, key))
     print(f"wrote {out}/terminal.svg and {len(LINKS)} link buttons "
