@@ -51,7 +51,7 @@ ABOUT = [
 ]
 
 LINKS = [  # (key, label shown in the listing, url)
-    ("portfolio", "portfolio-walidozich.netlify.app", "https://portfolio-walidozich.netlify.app"),
+    ("portfolio", "walidozich.netlify.app", "https://walidozich.netlify.app"),
     ("linkedin", "in/mohamed-walid-cherchali", "https://www.linkedin.com/in/mohamed-walid-cherchali-204771217/"),
     ("github", "github.com/walidozich", "https://github.com/walidozich"),
     ("email", "cherchalimohamedwalid@gmail.com", "mailto:cherchalimohamedwalid@gmail.com"),

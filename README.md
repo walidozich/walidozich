@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://portfolio-walidozich.netlify.app"><img src="https://raw.githubusercontent.com/walidozich/walidozich/output/link-portfolio.svg" alt="[1] portfolio" /></a>
+  <a href="https://walidozich.netlify.app"><img src="https://raw.githubusercontent.com/walidozich/walidozich/output/link-portfolio.svg" alt="[1] portfolio" /></a>
   <a href="https://www.linkedin.com/in/mohamed-walid-cherchali-204771217/"><img src="https://raw.githubusercontent.com/walidozich/walidozich/output/link-linkedin.svg" alt="[2] linkedin" /></a>
   <a href="https://github.com/walidozich"><img src="https://raw.githubusercontent.com/walidozich/walidozich/output/link-github.svg" alt="[3] github" /></a>
   <a href="mailto:cherchalimohamedwalid@gmail.com"><img src="https://raw.githubusercontent.com/walidozich/walidozich/output/link-email.svg" alt="[4] email" /></a>
